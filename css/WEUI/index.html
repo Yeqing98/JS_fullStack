@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="page">
+            <div class="page_hd">
+                <h1 class="page_title">Button</h1>
+                <p class="page_desc">按钮</p>
+            </div>
+            <div class="page_bd">
+                <a href="#" class="weui-but  weui-but_primary" id="primary">页面主操作 Normal</a>
+                <a href="#" class="weui-but  weui-but_loading">
+                    <i class="weui-loading"></i>
+                    页面主操作 Normal
+                </a>
+                <a href="#" class="weui-but  weui-but_three">我的按钮</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        var oPrimary = document.getElementById('primary')
+        // console.log(oPrimary)
+        oPrimary.onclick = function() {
+            // this.innerHTML = 'Hello word!'
+            this.classList.add('active')
+        }
+    </script>
+</body>
+</html>
