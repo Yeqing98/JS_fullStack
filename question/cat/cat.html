@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Cat</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+        }
+
+        .cat {
+            background-color: #f7dfcf;
+            width: 100%;
+            height: 100%;
+        }
+
+        .cat-tail {
+            position: absolute;
+            background-image: url('./maowei.png');
+            width: 65px;
+            height: 195px;
+            top: -91%;
+            left: -10%;
+            z-index: 1;
+            animation: tail 2s ease infinite;
+            transform-origin: 40% 100%;
+        }
+        @keyframes tail{
+            0%{
+                transform: rotateZ(0);
+            }
+            50%{
+                transform: rotateZ(-10deg);
+            }
+            100%{
+                transform: rotateZ(0);
+            }
+        }
+        .bg{
+            background: url('./maoshenti.png');
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .cat-body {
+            position: absolute;
+            width: 118px;
+            height: 200px;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .cat-paw{
+            position: absolute;
+            background: url('./maozhua.png');
+            width: 35px;
+            height: 82px;
+            top: 94%;
+            right: 18%;
+            animation: paw 2s ease infinite;
+            transform-origin: 50% 0%;
+        }
+        @keyframes paw{
+            0%{
+                transform: rotateZ(-10deg);
+            }
+            50%{
+                transform: rotateZ(0deg);
+            }
+            100%{
+                transform: rotateZ(-10deg);
+            }
+        }
+        .cat-eye1{
+            position: absolute;
+            background: url('./maoyan1.png');
+            border-radius: 2px;
+            width: 4px;
+            height: 4px;
+            top: 88%;
+            right: 18%;
+            z-index: 3;
+        }
+        .cat-eye2{
+            position: absolute;
+            background: url('./maoyan2.png');
+            border-radius: 2px;
+            width: 4px;
+            height: 4px;
+            top: 84%;
+            right: 30%;
+            z-index: 3;
+        }
+        .cat-mouth{
+            position: absolute;
+            background: url('./maozui.png');
+            width: 5px;
+            height: 4px;
+            top: 92%;
+            right: 30%;
+            z-index: 3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="cat">
+        <div class="cat-body">
+            <div class="bg"></div>
+            <div class="cat-tail"></div>
+            <div class="cat-mouth"></div>
+            <div class="cat-eye1"></div>
+            <div class="cat-eye2"></div>
+            <div class="cat-paw"></div>
+        </div>
+    </div>
+</body>
+
+</html>
