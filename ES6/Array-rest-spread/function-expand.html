@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //  ES5 时候  赋默认值 两种常见方法 
+        // function Person (name) {
+        //     //  赋默认值
+        //     // if(!name){
+        //     //     name = 'default name';
+        //     // }
+        //     this.name = name || 'default name'
+        // }
+        //  const p1 = new Person('cst');
+
+        // const p2 = new Person();
+        // ES6 时候
+        function Person (name = 'default name') {
+            //  赋默认值
+            // if(!name){
+            //     name = 'default name';
+            // }
+            this.name = name ;
+        }
+         const p1 = new Person('cst');
+
+        const p2 = new Person();
+
+        // rest 参数 形式(...变量名)  
+        // 作用：获取多余参数
+        // 搭配的变量是一个数组
+        // Rest parameter must be last  只能让最后的参数变成数组，不能让中间的变成数组
+        const arrow_sum = (a,...args,c) => {
+            console.log(a,args,c);
+        }
+        arrow_sum(1,2,3,4);
+    </script>
+</body>
+</html>
