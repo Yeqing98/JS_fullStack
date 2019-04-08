@@ -5,4 +5,7 @@ function fundShort(str){
         return a-b;
     })[0];
 }
+function fundShort(str){
+    return Math.min(...str.split(' ').map(w => w.length));
+}
 console.log(fundShort('briaksdbfk asdbjas asmhdbj ajsd asmhdbasdh'));
