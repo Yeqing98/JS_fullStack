@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>硬件设备</title>
+    <style>
+        .btn-container {
+        position: fixed;
+        transform: translate(-50%, 0);
+        left: 50%;
+        width: 10rem;
+        height: 2rem;
+        bottom: 10px;
+        }
+        .btn {
+        height: 100%;
+        background-color: green;
+        color: white;
+        /* margin-right: 10px; */
+        }
+
+    </style>
+</head>
+<body>
+    <!-- 等getUserMedia -->
+    <video id="video" autoplay></video>
+    <canvas id="canvas"></canvas>
+    <div class="btn-container">
+        <button class="btn" id="photo">
+            拍照
+        </button>
+    </div>
+    <a href="image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAMABVYDASIAAhEBAxEB/8QAHQAAAgIDAQEBAAAAAAAAAAAABAUDBgACBwEICf/EAEwQAAIBAwMDAgQEBQIDBgQADwECAwAEEQUSIQYxQRNRByJhcTKBkaEIFCOxwRVCUmLRFiQzcuHxgpKisvAJNEPCGCUmRFMnk7PS0//EABsBAAMBAQEBAQAAAAAAAAAAAAIDBAEABQYH/8QANBEAAgICAgICAgEEAQMEAgMBAQIAEQMhEjEEIhNBMlFhBSNCcRRSgZEGM6HxscEkYvDR/9oADAMBAAIRAxEAPwD6uuTAqAoqpwOFGAOB4oC/me40u803JVLu3ktnI/4XUqf2JqS9hmcfMwHkftQNzNLEiRpGXHILjHyjBqV8Qyjn3FnHkxsGuh+pHcXzXDs0g+cnkml11O0BDLyO9ESAOWPb60sZ+6BcZYk9+c0kYcTPbblyWq0IRDcuvCr3qw9Pxj1g3OSCcY78VWLJxJNtzkZqy2dtI8iCNmGPKnB7c1bhx48bMOrkbN8T8yLlw0ssZGWQFQfp296udifWAOeyDHOM9sVVdKtmkjKzKSMYPNWrTkKDgZCqBj2Ax/0FNCK6g/8AebjyYy/yEVcKNzbR3HpJLiRRkrzlfzxijJZFaPeD4wc45oVWEvA/PmpNwVSoI/8AWudRQ3U5j8h0akf88zD0XJVivbH4lORQUrhWERPAX9MYAqa9DrLEY49ymHa7K6kBt7Z7nPbFASudoVTyK5gcnoNzkDXoans7x4BB5IpZdMkimOU4Byc/ajJHYIWCUnu5ncg4wNxpK0h4qItiflCP1Pbjbbjue2RQEtzvHC/+tT3EvrPyeBxWgSIIcDmjU8V3HHKiJwHUFKh4zmtIYdwxJ+FckYPJNbl95wK8JMe5sjkHNBiAMXkPykNJpJZCdxIySc1JZysGLMeCcfvUBT1DkMCMntWSB0UbQTg/vXOooqfuP5PhTmpjeNBKvqdz71tKJfT9MjihrdtkC4xuHnn9KlW7dlYMSCOMUXBsajjupjNzXi2iYNMpiz6Zx70AxLzDec0zuELIWz4oO2thJKSxrcmX5NnuZxocCLjPTcZ2qPHtTmGZNphl5VlKn7EYpfZYikCKuQTjNC63dNZBZASoY45pwyEAHINmYMfFZcRepMWDnlyzE8dyxPj71BcyxIDz3x/0qn2vU0MKgStz96avrdtNAH3/AIsYI+9c68lq4ksFbg3RmanOkxDAj5c1U9bulWC5QSZYwSLjnsylf8mttU1tIW2M+MjPfsKqOv8AUaPC0cSPkAYbjB7/AF+v9qnLnHGuFyUD2JTFlaz6pupQOL2b5znxknP71YjtmQk8+33qj6hfu2opPzxT+312DYFDDOP3FY+ToH7i+JKhjv8AcMmIUnA817E678tQD33q5cds8URC3qJuJ5qP4wz8vqUc1AjjS3WO6URtzIwHeujaFC5VD3YDNc50mAGVHZSShBFdN0QPGiHGcgVci8vxMUFFcmOparNnwqe9WK2J9MKcjFI7CIh0kY9s0/jQTxspwARgmi4iLXGSb+pu++KPYGxn6UrvZP6JiLZOO9MpQeFJHsB9KAurfcrcgEjj9acWobjcuUNoDcr97NiMqx5FVvUPnkDZzT3UIgGYl855qv3DYY57ClO6k8ieoo8gRZgkzMVKHGKofXmhprVnFa3GQqOHVlAJVty+D9F/erxM7O2EHA5pFrkcrwOoBLeMUrHkYNbGPYr99xF0NFDpEEOmBywjCxgkDPAro8ZQxkAZyeOa+Qeq/iVrug9YCXS5nRLRxui3fK5xyCDXcfh98XNF6tsont3NvdDCzW0rKHRueRzgg+CDS8zhX9e5Vn8Z3QZGGj9idbsQYse/fFDa1dJAryNyqgFv1/8AWgotbjKFkdSR3IOcVyP4l/Fc2UNxYaWfUeRHVnI7NwRz47Hx2piKzsWY6qLw+K3kL8InBPi9Omodda1eBwWmuZi+OQwcYakWhaPdXD+jaJ/UkBRVHbJ7Vl2s1/evPKxkd2yT3rq3wo6Xa8v7WX0AdlzG8hI/DGFc5/Ngg/P6V4/kZmzeSD2Bqfb+T/8AwPAXG56E7holoLPRrTT88QL58k8n96C6mthcvbkJuMQcd+wO3/pRl7d/6fKY27rQi3iXJLykYNe94eH7PRnwjgE2p7h2jySSwhZ3JbPen1nYwRyLODkrnH5gg/3pNZQQPbtMsmCCQBTnSt0m0NyCae6pdCAPQUTcsCdSXSHhQSAB2HIp1DLfXkSv6TYcA8c1WoJrKG79GbbwRjJ4ro+kXNi0EaW5UhVGMH6UprWxCOS/5lE1XRLuaV52wOASPmzgD7YqnXiy2986Hgrx+Vdz1F45YzHjKn3Ncd6mgH+qTMmB85Ax7eKbjHFZiuG9YOljqt9Hm1Xd9O1POmNN1ixucSRsiysnq/UAn+wLfrTLo+OIp82CMAAHwauIjhQDao3GkZHsnUJiT6t1NokBgKjjPIpPcxbZ+Oeaehh6fsaUTRyfzAXuSfalF6WHjHFfXUfaW4FmkbDxRgEbHaRQdnGVjUHjAonODlTSl49sdzMjs2rhMcjRfgPjzXiFWZmPdq0DqF71IgVl4AqoZL0IGRi9WYVaJhSF7Hipt3pkg0NC0iP5xRROAWelsnKEvEjcHuAXXI7DvSqaEFuB9aPnly3B4NCSSKpK0aFscVkRWNQGR2jXaO2aAupSzDHij7gBjiltwCAQPelCrqoSUoCwefHGKEl5HaiTjHLeaFuHRATuoKF8THhtUepF6uG20VbyBDkc0GsYY7896ng2KxJPbxTUQbCxCsRv6jq1y7BsU5tZShApHYTg8Y705t2HcU1BwX+YwsFFGNkBcAt+VGIo20sjuCML7UwhcFO/iuZmK7iwVVqWYx+XgVD27+9SrgZJNRSnaCTyKKwoOouuJ3BbllEmBxQcxBzRExVmyTigLh2DYFIXEl8hHY24aH3Bbg7W4H6V6jCOMbRjJyea8ldcYao177s5HtWOvLudy4nUIErEgN5olADHknig8+p+Edqn+cIOfFZ2QYpG9jxHcKhdc4zRMGVfcKXwkA80bF4Ao3UMdxwuuMbwznbgeaBu1/qE+DUke4R5zUTOWGCaTjTZqYwC9wc/JlqCurgc/Sj5RhMmld0O3FOpSvF4Bxhvb7ii/vPTBcHBrmuug3F5JL357/TFWrqq+aLEMZw2TuP0xQunaTBeWazSjLSKc/qQP2xWmsJVx1CXiNkWYjtNSUWfpMfmUYFKXLGV5BjLHJrXULdrHU3gydoNayHK/IRnOK4knKGSGdnUeQ38dtajkcexpZeXf83KXAJJ96ItNEuJod8rkD2qGxtA+opbMN4OS2Afl/Fj+w/WuesxpjFLj4b+4w0npuXVduxlXPkirVonQsVrIWklDyHHai9GsltYY9gIyM4IqxWxKgMPtRU16MBgx00N0Wxi0uL04hgE7iacqAwAxwaUxbsDPamVscjHtTQ3EUI1WdVpYUhCEAA0QbgIB7/eoo1DYDHFbi3U5O77UFg7M17rcFuJS42gnaO1LHQLI/bNMbgBDgE8UvnG4liaXyBNRIfdSFtmcjvQbS4at3yXJUkCoWUBsmtEeOV3cjm/qHnj8qjkbZwrHFSSOAeR9PyqF1HfNADRggcxxYz1i7RhQ371PAmwLjnPmoInUMAw4o0OrKCvGBQPo1CKgCgZLuZxtB4HNErI/wDLqmPwdh9zQtvgng9qLz7DFY2l9oCEsfbqRSk430NLJ8hye9FTcJ2oOVGkXA44qdqfVRiUAagVxIxUhTnjj70HcyPLsBP4BgfqT/mi5kZTg0DKxPy0PAE/6gNjPHlcBkBVyc8E0Rb3GF2Fv0qKZHPCjOfatII2WXDDGKer8xxMQFLAE9xtaOA5YU6tmUyKQc/nSK3IUkGm1gMHOc1RjUYxRjiR2e47tNplzimSsCMg5xSqAlfPemVrgpnNZyAM4M5P8TGhUKSfHNL77e+Ru47d/bt/+H1o+83iCTY2DtIB9qWXTNkgIV5xzn3PvSmDX+5pBNiVHWZRYypfH/8AMyq5H2Ir8x/jJpB0LV77SuS1iRBn7KOa/TzqS0L20in/AHqVr88v4lrNLTrbV5iFxO6SH7hFX+6k/nScjmjYhoGBPJp8wXbOCxIxSa6kMkm0Ddg/pT7VyCWwAPtSJk2KZAeazHj4oc32fqa7rgPJTJbdDkZNWHpu8l0/W7G7VeIZ45D9QGBx+wqpQXpMuCcDNObLWFhmUgbtpzj3pvgKuP8AtYtAyIPkdi47n350dqMd3Fb3xILXCiXg8c5OP3rodreII84wQBmvnz4IdQHUun7Vmzn1GyCfwjb8o/UV2kSbkABJx7GqCGT1JicFo3H+YTrNyXkRl5OMVDZO5kQhuzA49+ailkUrlyePest5EaQbG8ihBVXFdz0suUqtA3ct2nOVm3NgEOWxk8Egj/Jqz6fMIiG3YB7VULOcO6jtmrNYhm2gnB8GlFh+REClKWZZoHLYdTjkN9sEEGmensqTeo7biUMRyfBxn+1I7ZtgwWNC6trsmi2rXUqnGcALnOcDP96YQFFrEc+JpVuXlbqKKNgmFByBz96Fl6pjtIzG13sC849baf7/AFrkGp/ES+kUi2kf6HbgiqdqOrajq0+6edmIPnxQo4VuJlePF8g1oz6FtfiHprsbcSOWBxuYj2981Y9N1q2v03CRTyAMsD3Gf+lcO6G6O1HWYfWWGUxMCRIIyytggYB98kVfbPp3VenUIeKdYmPBdCozgeSMe"></a>
+    <script>
+        const videoConstraints = {
+            width:1366,
+            height:768
+        };
+        const canvas = document.getElementById('canvas');
+        canvas.width = videoConstraints.width;
+        canvas.height = videoConstraints.height;
+        const context = canvas.getContext('2d');
+        const videoNode = document.querySelector('#video');
+
+        navigator.getUserMedia(
+        {audio:true, video: videoConstraints},
+        function(stream){
+            videoNode.srcObject = stream;
+        },
+        function(error){
+            console.log(error);
+        })
+        document
+            .querySelector('#photo')
+            .addEventListener('click',function
+            (event){
+                event.preventDefault();
+                // stream canvas 画布
+                context.drawImage(videoNode,0,0,canvas.width,canvas.height);
+                // 图片如何保存到本地
+                download(canvas.toDataURL('image/jpeg'));
+            })
+            function download(src){
+                // console.log(src);
+                const a = document.createElement('a');
+                a.setAttribute('download',new Date());
+                a.href = src;
+                a.click();
+            }
+    </script>
+</body>
+</html>
