@@ -139,7 +139,7 @@
     </section>
     <!-- section6 -->
     <section class="ection-seperate section-seperate">
-      <p class="section-til pos-r">讨论
+      <p class="section-til pos_r">讨论
         <span class="join-comment">参与讨论</span>
       </p>
       <ul class="movie-comment">
@@ -151,63 +151,79 @@
         </li>
         <li class="comment-item">
           <div class="comment-item_sort">
-            <span>好评</span>
+            <span id="good">好评</span>
             <span class="comment-item_num"></span>
           </div>
         </li>
         <li class="comment-item">
           <div class="comment-item_sort">
-            <span>差评</span>
+            <span id="bad">差评</span>
             <span class="comment-item_num"></span>
           </div>
         </li>
         <li class="comment-item">
           <div class="comment-item_sort">
-            <span>点映</span>
+            <span id="dy">点映</span>
             <span class="comment-item_num"></span>
           </div>
         </li>
         <li class="comment-item">
           <div class="comment-item_sort">
-            <span>购票</span>
+            <span id="bought">购票</span>
             <span class="comment-item_num"></span>
           </div>
         </li>
         <li class="comment-item">
           <div class="comment-item_sort">
-            <span>认证作者</span>
+            <span id="author">认证作者</span>
             <span class="comment-item_num"></span>
           </div>
         </li>
         <li class="comment-item">
           <div class="comment-item_sort">
-            <span>同城</span>
+            <span id="samecity">同城</span>
             <span class="comment-item_num"></span>
           </div>
         </li>
       </ul>
     </section>
     <!-- section7 -->
-    <section class="section-expander section-seperate">
-        <p class="section-til">精选</p>
-        <ul class="chosen-comment" id="chosen-comment">
-          <li class="chosen-comment_item">
-            <div class="item-avatal">
-              <img src="http://img5.duitang.com/uploads/item/201409/23/20140923094045_BNYji.thumb.700_0.png" alt="">
+    <section class="section-seperate section-expander">
+      <p class="section-til">精选</p>
+      <ul class="chosen-comment" id="chosen-comment">
+        <!-- <li class="chosen-comment__item">
+          <div class="item-avatal">
+            <img src="" alt="">
+          </div>
+          <div class="item-detail">
+            <div class="item-detail__hd">
+              <div>
+                <span class="nick-name">dqweqwe</span>
+                <span class="lever">
+                  <img src="" alt="">
+                </span>
+              </div>
+              <p class="item-score__desc">给这部电影打了<span></span>分</p>
             </div>
-            <div class="item-detail">
-              <div class="item-detail_hd">
-                <div>
-                  <span class="nick-name">士大夫</span>
-                  <span class="lever">
-                    <img src="" alt="">
-                  </span>
-                </div>
-                <p class="item-score_desc">给这部电影打了<span>10</span>分</p>
+            <div class="item-detail__content">
+              <p></p>
+            </div>
+            <div class="item-detail__footer">
+              <span class="item-detail__time">03-22</span>
+              <div class="pull-right">
+                <a href="#" class="link comment-like">
+                  <i class="icon icon-approve"></i>
+                  <span>32423</span>
+                </a>
+                <a href="#" class="link comment-reply">
+                  <i class="icon icon-comment"></i>
+                  <span>2121</span>
+                </a>
               </div>
             </div>
-          </li>
-        </ul>
+          </div>
+        </li> -->
+      </ul>
     </section>
     <!-- toast -->
     <div id="toast">
@@ -239,6 +255,8 @@
           celebrity(res.data.person)
           booking(res.data.booking)
           photo(res.data.pictures)
+          talking(res.data.commentNum)
+          choose(res.data.comment)
         }
       })
       function star(e) {
@@ -305,6 +323,52 @@
               <img src="${m}" alt="">
             </div>
           </a>
+        </li>`)
+        }
+      }
+      // 讨论
+      function talking(t){
+        $('#author').append('<span>('+t.author+')</span>')
+        $('#bad').append('<span>('+t.bad+')</span>')
+        $('#bought').append('<span>('+t.bought+')</span>')
+        $('#dy').append('<span>('+t.dy+')</span>')
+        $('#good').append('<span>('+t.good+')</span>')
+        $('#samecity').append('<span>('+t.sameCity+')</span>')
+      }
+      // 精选
+      function choose(comment){
+        for(let j of comment){
+          $('#chosen-comment').append(`<li class="chosen-comment__item">
+          <div class="item-avatal">
+            <img src="${j.avatal}" alt="">
+          </div>
+          <div class="item-detail">
+            <div class="item-detail__hd">
+              <div>
+                <span class="nick-name">${j.nickName}</span>
+                <span class="lever">
+                  <img src="${j.lever}" alt="">
+                </span>
+              </div>
+              <p class="item-score__desc">给这部电影打了<span>${j.grade}</span>分</p>
+            </div>
+            <div class="item-detail__content">
+              <p>${j.detail}</p>
+            </div>
+            <div class="item-detail__footer">
+              <span class="item-detail__time">${j.date}</span>
+              <div class="pull-right">
+                <a href="#" class="link comment-like">
+                  <i class="icon icon-approve"></i>
+                  <span>${j.like}</span>
+                </a>
+                <a href="#" class="link comment-reply">
+                  <i class="icon icon-comment"></i>
+                  <span>${j.reply}</span>
+                </a>
+              </div>
+            </div>
+          </div>
         </li>`)
         }
       }
