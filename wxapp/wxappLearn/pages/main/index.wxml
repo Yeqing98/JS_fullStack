@@ -1,2 +1,9 @@
-<!--pages/main/index.wxml-->
-<text>pages/main/index.wxml</text>
+<view >
+    <swiper indicator-dots="{{indicatorDots}}" indicator-color="#eee" autoplay="true" interval="5000" duration="{{duration}}">
+        <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image" width="355" height="150" />
+            </swiper-item>
+        </block>
+    </swiper>
+</view>
