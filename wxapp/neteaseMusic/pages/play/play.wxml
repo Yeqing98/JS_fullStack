@@ -1,5 +1,6 @@
 <view class="bg">
     <view class="body">
+        <image src="{{song.al.picUrl}}" class="bgImg" />
         <view class="sing-brief">
             <view class="song-name">{{song.name}}</view>
             <view class="singer-name">
@@ -8,9 +9,9 @@
         </view>
         <!-- 中间封面 -->
         <view class="sing-show">
-            <image src="../../image/stick.png" class="stick" />
+            <image src="../../image/stick.png" class="stick {{isPlay ? 'downward' : 'upward'}}" />
             <image src="../../image/disk.png" class="disk" />
-            <image src="{{song.al.picUrl}}" class="coverImage {{isPlay ? 'play' : ''}}" />
+            <image src="{{song.al.picUrl}}" class="coverImage {{isPlay ? '' : 'play'}}" />
         </view>
         <view>
             <button type="primary" bindtap="togglePlayStatus">

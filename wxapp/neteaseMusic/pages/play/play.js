@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isPlay: false
+    isPlay: true
   },
 
   /**
@@ -52,6 +52,17 @@ Page({
         isPlay: true
       });
     })
+  },
+  togglePlayStatus: function() {
+    if( this.data.isPlay == true) {
+      this.setData({
+        isPlay: false
+      })
+    }else{
+      this.setData({
+        isPlay: true
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
