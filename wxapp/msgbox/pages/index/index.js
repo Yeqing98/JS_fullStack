@@ -15,5 +15,15 @@ Page({
   },
   _success() {
     this.popup.hidePopup();
+  },
+  change: function(e) {
+    // console.log('catch')
+    var mComponent = this.selectComponent('#myComponent');
+    mComponent.setText('外部调用了')
+  },
+  onTextChange: function() {
+    wx.showToast({
+      title: '抓获事件'
+    })
   }
 })

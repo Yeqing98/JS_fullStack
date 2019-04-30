@@ -10,4 +10,6 @@
   btn_ok="学会了"
   bind:error="_error"
   bind:success="_success"></popup>
+  <text catch:onTextChange="onTextChange" id="myComponent"></text>
+  <button catch:tap="change">点击改变文字内容</button>
 </view>

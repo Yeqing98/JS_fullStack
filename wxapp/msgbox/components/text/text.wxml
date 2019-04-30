@@ -1,0 +1,1 @@
+<text catch:tap="onClick">{{text}}</text>

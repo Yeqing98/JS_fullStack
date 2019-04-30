@@ -18,3 +18,7 @@
           
       }
   })
+
+- bind tap  区别  
+  bindtap 向外冒泡
+  catch:tap  不会
