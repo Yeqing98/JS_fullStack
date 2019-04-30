@@ -1,0 +1,39 @@
+{
+  "pages": [
+    "pages/main/main",
+    "pages/mine/mine",
+    "pages/circle/circle"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#eb5648",
+    "navigationBarTitleText": "最美南师",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#515151",
+    "selectedColor": "#eb5648",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/main/main",
+        "text": "首页",
+        "iconPath": "images/shouye.png",
+        "selectedIconPath": "images/hover-shouye.png"
+      },
+      {
+        "pagePath": "pages/circle/circle",
+        "text": "校友圈",
+        "iconPath": "images/class.png",
+        "selectedIconPath": "images/hover-class.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/hover-mine.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
