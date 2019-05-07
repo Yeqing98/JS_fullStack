@@ -37,7 +37,33 @@ Page({
       that.selectComponent('#new-group-model').stopLoading()
       return
     } else {
-      
+      wx.cloud.callFunction({
+        name: 'createGroup',
+        data: {
+          groupName: that.data.groupName
+        },
+        success(res) {
+          console.log(res)
+          that.setData({
+            show: false,
+            groupName: ''
+          })
+          Notify({
+            text: '创建成功',
+            duration: 1500,
+            selector: '#notify-selector',
+            backgroundColor: '#28a745'
+          });
+          setTimeout(() => {
+            wx.switchTab({
+              url: `/pages/group/group`
+            })
+          },1500)
+        },
+        fail(error) {
+          console.log(error)
+        }
+      })
     }
   },
   /**
