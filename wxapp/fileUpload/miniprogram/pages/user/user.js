@@ -1,18 +1,40 @@
-// miniprogram/pages/group/group.js
+// miniprogram/pages/user/user.js
+const db = wx.cloud.database();
+const photos = db.collection('photos')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    groupList: []
+    photos: []
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    wx.showLoading({
+      title: '数据正在加载中...'
+    });
+    wx.cloud.callFunction({
+      name:'getOpenId',
+      success: res => {
+        console.log(res);
+        const openid = res.result.openid;
+        photos.where({
+          _openid: openid
+        })
+        .get()
+        .then(photosRes => {
+          this.setData({
+            photos: photosRes.data,
+          });
+          wx.hideLoading();
+        })
+      }
+    });
+    
   },
 
   /**
@@ -26,24 +48,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let that = this;
-    wx.showNavigationBarLoading()
-    wx.cloud.callFunction({
-      name: 'getGroup',
-      data: {},
-      success(res) {
-        console.log(res);
-        that.setData({
-          groupList: res.result
-        })
-      },
-      fail(error) {
-        console.log(error)
-      },
-      complete() {
-        wx.hideNavigationBarLoading()
-      }
-    })
+
   },
 
   /**

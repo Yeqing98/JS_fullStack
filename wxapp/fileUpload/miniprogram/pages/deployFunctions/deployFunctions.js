@@ -1,11 +1,11 @@
-// miniprogram/pages/group/group.js
+// pages/deployFunctions/deployFunctions.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    groupList: []
+
   },
 
   /**
@@ -26,24 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    let that = this;
-    wx.showNavigationBarLoading()
-    wx.cloud.callFunction({
-      name: 'getGroup',
-      data: {},
-      success(res) {
-        console.log(res);
-        that.setData({
-          groupList: res.result
-        })
-      },
-      fail(error) {
-        console.log(error)
-      },
-      complete() {
-        wx.hideNavigationBarLoading()
-      }
-    })
+
   },
 
   /**

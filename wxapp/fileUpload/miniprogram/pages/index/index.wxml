@@ -1,0 +1,4 @@
+<button type="primary"
+bindtap="upload"
+>图片上传</button>
+<navigator url="../user/user">用户</navigator>
