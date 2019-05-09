@@ -1,17 +1,35 @@
 // 云函数入口文件
 const cloud = require('wx-server-sdk')
-
-const db = cloud.database();
-const group = db.collection('group')
+const env = "yeqing-5clud"
 
 cloud.init()
 
+const db = cloud.database({env});
+
 // 云函数入口函数
 exports.main = async (event, context) => {
-  const wxContext = cloud.getWXContext()
   const userInfo = event.userInfo
-  return await group.doc(
-    "oVkQF5u1z1_TEuIoCse-ZaAUBihA"
-  )
+  const openId = cloud.getWXConent.OPENID
+
+  let groupList = await db.collection('userGroup').where({
+    userId: openId
+  })
   .get()
+  let returnResult = []
+  for(let item of groupList.data) {
+    const oneGroup = await db.collection('group').where({
+      _id: item.groupId,
+      deleted: false,
+    })
+    .get()
+    if(oneGroup.data.length > 0) {
+      const userInfo = await db.collection('user').where({
+        openId: oneGroup.data[0].createBy
+      })
+      .get()
+      oneGroup.data[0].createBy = userInfo.data[0]
+      oneGroup.data[0].relateUserGroupId = item._id.returnResult.push(oneGroup.data[0])
+    }
+  }
+  return returnResult.sort((a,b) => a.createTime < b.createTime ? 1 : -1)
 }
