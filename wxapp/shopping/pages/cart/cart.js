@@ -7,8 +7,10 @@ Page({
   data: {
     hasList: false,
     carts: [],
-    selectAllStatus: true
+    selectAllStatus: true,
+    totalPrice: 0
   },
+  // 全选
   selectAll(e) {
     let selectAllStatus = this.data.selectAllStatus
     selectAllStatus = !selectAllStatus
@@ -16,11 +18,16 @@ Page({
     for(let i = 0; i < carts.length; i++) {
       carts[i].selected = selectAllStatus
     }
+    if(selectAllStatus) {
+
+    }
     this.setData({
       selectAllStatus: selectAllStatus,
-      carts: carts
+      carts: carts,
     })
+    this.getTotalPrice()
   },
+  // 单选
   selectList(e) {
     let index = e.currentTarget.dataset.index
     let carts = this.data.carts
@@ -30,7 +37,26 @@ Page({
     this.setData({
       carts: carts
     })
+    this.getTotalPrice()
   },
+  // 价格总和
+  getTotalPrice() {
+    const that = this
+    let carts = this.data.carts
+    let total = 0
+    for(let i = 0; i < carts.length; i++) {
+      let selected = carts[i].selected
+      if(selected) {
+        let num = carts[i].num
+        let price = carts[i].price
+        total += num * price;
+        that.setData({
+          totalPrice: total.toFixed(2)
+        })
+      }
+    }
+  },
+  // 减
   minusCount(e) {
     let index = e.currentTarget.dataset.index
     let carts = this.data.carts
@@ -48,7 +74,9 @@ Page({
     this.setData({
       carts: carts
     })
+    this.getTotalPrice()
   },
+  // 加
   addCount(e) {
     let index = e.currentTarget.dataset.index
     let carts = this.data.carts
@@ -58,6 +86,23 @@ Page({
     this.setData({
       carts: carts
     })
+    this.getTotalPrice()
+  },
+  // 删除
+  deleteList(e) {
+    let index = e.currentTarget.dataset.index
+    let carts = this.data.carts
+    carts.splice(index,1)
+    this.setData({
+      carts: carts
+    })
+    if(!carts.length) {
+      this.setData({
+        hasList: false
+      })
+    }else {
+      this.getTotalPrice()
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -84,7 +129,8 @@ Page({
           { id: 1, title: '新鲜芹菜 半斤', image: '/image/s5.png', num: 4, price: 0.01, selected: true },
           { id: 2, title: '素米 500g', image: '/image/s6.png', num: 1, price: 0.03, selected: true }
         ]
-      })
+      });
+      this.getTotalPrice()
     },1000)
   },
 

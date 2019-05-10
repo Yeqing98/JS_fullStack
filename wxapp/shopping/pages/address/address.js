@@ -1,38 +1,50 @@
-// pages/category/category.js
+// pages/address/address.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    category: [
-      { name: '果味', id: 'guowei' },
-      { name: '蔬菜', id: 'shucai' },
-      { name: '炒货', id: 'chaohuo' },
-      { name: '点心', id: 'dianxin' },
-      { name: '粗茶', id: 'cucha' },
-      { name: '淡饭', id: 'danfan' }
-    ],
-    curIndex: 0,
-    isScroll: false,
-    toView: 'guowei',
-    detail: ''
+    address: {
+      name: '',
+      phone: '',
+      detail: ''
+    }
   },
-  switchTab(e) {
-    console.log(e);
+  bindName(e) {
     this.setData({
-      toView: e.currentTarget.dataset.id,
-      curIndex: e.currentTarget.dataset.index
+      'address.name': e.detail.value
     })
   },
-  scroll(e) {
-    // console.log(e);
-    let scrollTop = e.detail.scrollTop;
-    let scrollIndex = Math.floor(scrollTop / 450);
-    let index = scrollIndex;
+  bindPhone(e) {
     this.setData({
-      curIndex: index
+      'address.phone': e.detail.value
     })
+  },
+  bindDetail(e) {
+    this.setData({
+      'address.detail': e.detail.value
+    })
+  },
+  formSubmit() {
+    if(this.data.address.name && this.data.address.phone && this.data.address.detail) {
+      wx.setStorage({
+        key: 'address',
+        data: this.data.address,
+        success: (result) => {
+          console.log(result)
+          wx.navigateBack()
+        },
+        fail: () => {},
+        complete: () => {}
+      });
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '填写资料',
+        showCancel: false
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载
@@ -45,22 +57,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    const that = this
-    wx.request({
-      url: 'http://www.gdfengshuo.com/api/wx/cate-detail.txt',
-      success(res) {
-        that.setData({
-          detail:res.data,
-        })
-      }
-    })
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    
   },
 
   /**

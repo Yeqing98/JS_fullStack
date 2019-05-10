@@ -49,7 +49,7 @@
     left: 285rpx;
     bottom: 20rpx;
     width: 250rpx;
-    height: 80rpx;
+    /* height: 80rpx; */
 }
 .cart-list .cart-count-box text{
     display: inline-block;
