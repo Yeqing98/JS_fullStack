@@ -1,0 +1,10 @@
+.youhuiItem{
+  display: flex;
+}
+image{
+  /*  */
+  flex: 0 0 30%;
+}
+.price{
+  color: brown;
+}

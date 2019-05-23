@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="lists"></div>
+    <!-- html entity -->
+    <!-- 空格 -->
+    &nbsp;
+    <!-- < -->
+    &lt;
+    <!-- > -->
+    &gt;
+    <script>
+        // 扩展 原型链
+        // 扩展 字符串
+        // 扩展 对象
+        Array.prototype.double = function() {
+            console.log(this);
+            return this.map(ele => ele * 2);
+        }
+        let arr = [1,2,3];
+        let Arr = arr.double()
+
+
+        // 错误监控平台
+        // 错误分析
+        const promise = new Promise((resolve,reject) => {
+            setTimeout(() => {
+                reject('err');
+            },1500)
+        })
+        promise.then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            // 上报
+            console.log(err);
+        })
+        try{
+            const lists = document.getElementById('list');
+            lists.style.width = '10px';
+        }catch(error) {
+            console.log(error);
+        }
+        
+
+        
+    </script>
+</body>
+</html>
