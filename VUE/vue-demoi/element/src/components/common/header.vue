@@ -40,7 +40,7 @@ export default {
 
 <style scoped>
 .header {
-  background-color: red;
+  background-color: #409eff;
   position: relative;
   box-sizing: border-box;
   width: 100%;
