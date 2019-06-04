@@ -1,0 +1,15 @@
+{
+  "name": "headless-spider",
+  "version": "1.0.0",
+  "description": "看不到的浏览器\r 但是可以通过代码操作\r puppeteer: google -> chrom",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "puppeteer": "^1.17.0"
+  }
+}
