@@ -66,7 +66,21 @@ export default {
   data () {
     return {
       classMap: [],
-      goods: []
+      goods: [],
+      listHeight: [],
+      scrollY: 0
+    }
+  },
+  computed: {
+    currentIndex () {
+      for (let i = 0; i < this.listHeight.length; i++) {
+        let height1 = this.listHeight[i];
+        let height2 = this.listHeight[i + 1];
+        if(!height2 || (this.scrollY >= height1 && this.scrollY <= height2)) {
+          return i
+        }
+      }
+      return 0
     }
   },
   components: {
@@ -76,6 +90,14 @@ export default {
     _initScroll () { // 私有方法
     this.menuScroll = new BScorll(this.$refs.menuWrapper, {
       click: true
+    })
+    this.foodsScroll = new BScorll(this.$refs.foodsWrapper, {
+      click: true,
+      probeType: 3
+    })
+    this.foodsScroll.on('scroll', pos => {
+      this.scrollY = Math.abs(Math.round(pos.y));
+      console.log(this.scrollY);
     })
     },
     addFood (target) {
@@ -87,6 +109,24 @@ export default {
         // 动画组件
         
       })
+    },
+    selectMenu (index, event) {
+      if(!event._constructed) {
+        return
+      }
+      let foodList = this.$refs.foodList;
+      let el = foodList[index];
+      this.foodsScroll.scrollToElement(el, 300);
+    },
+    _calculateHeight () {
+      let foodList = this.$refs.foodList;
+      let height = 0;
+      this.listHeight.push(height);
+      for(let i = 0; i < foodList.length; i++) {
+        let item = foodList[i];
+        height += item.clientHeight
+        this.listHeight.push(height);
+      }
     }
   },
   created() {
@@ -97,7 +137,8 @@ export default {
         this.goods = res.data.data
         if (res.data.errno === 0) {
           this.$nextTick(() => { // 页面渲染完成才能执行
-            this._initScroll()
+            this._initScroll();
+            this._calculateHeight();
           })
         }
       })
