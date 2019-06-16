@@ -110,17 +110,17 @@ export default {
   },
   methods: {
     _initScroll () { // 私有方法
-    this.menuScroll = new BScorll(this.$refs.menuWrapper, {
-      click: true
-    })
-    this.foodsScroll = new BScorll(this.$refs.foodsWrapper, {
-      click: true,
-      probeType: 3
-    })
-    this.foodsScroll.on('scroll', pos => {
-      this.scrollY = Math.abs(Math.round(pos.y));
-      console.log(this.scrollY);
-    })
+      this.menuScroll = new BScorll(this.$refs.menuWrapper, {
+        click: true
+      })
+      this.foodsScroll = new BScorll(this.$refs.foodsWrapper, {
+        click: true,
+        probeType: 3
+      })
+      this.foodsScroll.on('scroll', pos => {
+        this.scrollY = Math.abs(Math.round(pos.y));
+        console.log(this.scrollY);
+      })
     },
     addFood (target) {
       this._drop(target)
