@@ -1,0 +1,3 @@
+- App   commentLists = []   所以评论
+    - CommentInput { userName, commit }
+    - CommentList []
