@@ -31,7 +31,7 @@ class Album {
     )
   }
 
-  export function creaAlbumBydetail(detail) {
+  export function createAlbumBydetail(detail) {
     return new Album(
       detail.id,
       detail.mid,

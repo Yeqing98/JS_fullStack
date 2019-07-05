@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import Scroll from '../../common/scroll/Scroll';
-import { getAlbumInfo } from '../../api/recommend';
+import { getAlbuminfo } from '../../api/recommend';
+import { getSongVKey } from '../../api/song';
 import * as AlbumModel from '../../model/album';
-import * as songModel from '../../model/song';
+import * as SongModel from '../../model/song';
 import Header from '../../common/header/header';
 import './Album.styl';
 
@@ -12,19 +13,31 @@ class Album extends React.Component {
         show: false,
         songs: [],
         album: {},
-        loading: true
+        loading: true,
+        refresh: true
+    }
+    getSongUrl = (song, mId) => {
+        // 请求
+        getSongVKey(mId).then(res => {
+            if(res.data.items) {
+                let item = res.data.items[0];
+                // console.log(res);
+                song.url = `http://dl.stream.qqmusic.qq.com/${item.filename}?vkey=${item.vkey}&guid=3655047200&fromtag=66`
+            }
+        })
     }
     componentDidMount() {
         const id = this.props.match.params.id;
-        getAlbumInfo(id).then(res => {
-            // console.log(res);
-            let album = AlbumModel.creaAlbumBydetail(res.data);
+        getAlbuminfo(id).then(res => {
+            console.log('getAlbuminfo', res)
+            let album = AlbumModel.createAlbumBydetail(res.data);
             album.desc = res.data.desc;
             let songList = res.data.list;
             let songs = [];
             songList.forEach(item => {
-                let song = songModel.createSong(item);
-                songs.push(song)
+                let song = SongModel.createSong(item);
+                this.getSongUrl(song,item.songmid)
+                songs.push(song);
             })
             this.setState({
                 loading: false,
@@ -36,6 +49,7 @@ class Album extends React.Component {
             show: true
         })
     }
+
 
     selectSong = (song) => {
         return () => {
