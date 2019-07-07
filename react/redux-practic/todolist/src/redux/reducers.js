@@ -10,10 +10,17 @@ function addList(list = listState.list, action) {
         case ActionType.ADD_LIST:
             return [...list, action.list];
         case ActionType.CHANGE_STATE:
-            list[action.index].show = !list[action.index].show;
-            console.log("23", list)
+            // list[action.index].show = !list[action.index].show;
+            const index = action.index;
+            return list.map((item, i) => {
+                if (index === i) {
+                    item.show = !item.show;
+                    return item
+                }
+                return item
+            })
             // list[action.index].show = show;
-            return list;
+            // return list;
         default:
             return list
     }

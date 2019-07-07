@@ -1,0 +1,29 @@
+.progressBar {
+    margin-top: 20px;
+}
+.progress {
+    position: relative;
+    width: 300px;
+    height: 10px;
+    background-color: darkgray;
+    border-radius: 5px;
+    left: 7px;
+}
+.bar {
+    position: relative;
+    width: 14px;
+    height: 14px;
+    background-color: aqua;
+    border-radius: 50%;
+    bottom: 12px;
+    z-index: 5;
+}
+.proBackground {
+    position: relative;
+    height: 10px;
+    background-color: pink;
+    border-radius: 5px;
+    left: 7px;
+    bottom: 24px;
+    z-index: 1;
+}
