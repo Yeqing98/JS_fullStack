@@ -34,6 +34,7 @@ class ProgressBar extends React.Component {
                 onTouchEnd={this.handleEnd}
                 style={{left: point }} ></div>
                 <div className="proBackground" style={{width: point}} ></div>
+                <div>移动了{point / 3}%</div>
             </div>
         );
     }
