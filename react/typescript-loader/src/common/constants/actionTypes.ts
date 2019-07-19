@@ -1,0 +1,4 @@
+export const actionTypes = {
+    FETCH_REPOSITORIES_COMPLETED:
+    'FETCH_REPOSITORIES_COMPLETED'
+}
