@@ -3,15 +3,20 @@ const http = require('http')
 const context = require('./context');
 const request = require('./request');
 const response = require('./response');
+const compose = require('./compose')
 
 module.exports = class Application extends Emitter {
     constructor() {
         super();
+        this.middleware = [];
         this.context = Object.create(context);
         this.request = Object.create(request);
         this.response = Object.create(response);
     }
-    use() {}
+    use(fn) {
+        this.middleware.push(fn);
+        return this;
+    }
     listen(...args) {
         // 原始的方法
         // const server = http.createServer((req, res) => {
@@ -34,11 +39,25 @@ module.exports = class Application extends Emitter {
         return context;
     }
     callback() {
+        const fn = compose(this.middleware);
         const handleRequest = (req, res) => {
             const ctx = this.createContext(req, res);
-            console.log(ctx.url, ctx.url === ctx.request.url)
-            res.end('hello koa')
+            // console.log(ctx.url, ctx.url === ctx.request.url)
+            // res.end('hello koa')
+            this.handleRequest(ctx, fn);
         }
         return handleRequest;
     }
+    handleRequest(ctx, fnMiddleware) {
+        const handleResponse = () => {
+            return respond(ctx)
+        }
+        return fnMiddleware(ctx).then(handleResponse)
+    }
+}
+
+function respond(ctx) {
+    const res = ctx.res;
+    const body = ctx.body;
+    res.end(body);
 }
