@@ -10,3 +10,7 @@ index.html html的内容输出
 
  mvvm webpack => .js => render => root(JS DOM)
  
+- nuxt 配置
+  nuxt.config.js
+  layout SEO 
+  plugins
