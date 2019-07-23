@@ -27,7 +27,7 @@ module.exports = class Application extends Emitter {
         const server = http.createServer(this.callback())
         server.listen(...args);
     }
-
+    
     createContext(req, res) {
         const context = Object.create(this.context);
         const request =
