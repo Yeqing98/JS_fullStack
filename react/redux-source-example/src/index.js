@@ -1,13 +1,16 @@
 import React from 'react';
 import ReduxThunk from 'redux-thunk';
 import thunk from './redux-thunk/index';
-// import { createStore, combineReducers, applyMiddleware } from 'redux'
+import Provide from './react-redux/Provide';
+import Count from './count';
+import ContextDemo from './contextDemo';
+import { createStore, combineReducers, applyMiddleware } from 'redux'
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import { createStore, combineReducers, applyMiddleware } from './redux/index';
+// import { createStore, combineReducers, applyMiddleware } from './redux/index';
 
 function foo(state = 0, action) {
 	switch (action.type) {
@@ -59,16 +62,40 @@ class Home extends React.Component {
 	render() {
 		const reduxStore = store.getState();
 		return (
+			
 			<div>
+				<Count />
 				foo: {reduxStore.foo}
 				bar: {reduxStore.bar}
 				<button onClick={this.handleAdd}> + </button>
 				<button onClick={this.handleAddAsync}>async add</button>
 			</div>
+			
 		)
 	}
 }
-ReactDOM.render(<Home />, document.getElementById('root'));
+
+
+
+function countReducer(state = 0, action) {
+	switch (action.type) {
+		case 'INCREMENT':
+			return state + 1;
+		case 'DECREMENT':
+			return state - 1;
+		default:
+			return state;
+	}
+}
+const store1 = createStore(countReducer);
+// store1.subscribe(() => {
+// 	console.log(store1.getState());
+// })
+ReactDOM.render(
+	<Provide store={store1}>
+		<Home />
+	</Provide>, 
+document.getElementById('root'));
 store.subscribe(() => {
 	ReactDOM.render(<Home />, document.getElementById('root'));
 })
