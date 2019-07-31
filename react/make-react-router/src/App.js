@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from './react-router-dom/index';
+import { BrowserRouter, Route, Link } from './react-router-dom/index';
 import './App.css';
 
 function Home() {
@@ -14,8 +14,12 @@ class App extends React.Component{
     return (
       <BrowserRouter>
         <ul>
-          <li>home</li>
-          <li>detail</li>
+          <li>
+            <Link to="/" >home</Link>
+          </li>
+          <li>
+            <Link to="/detail" >detail</Link>
+          </li>
         </ul>
         <Route path="/" component={Home} />
         <Route path="/detail" component={Detail} />

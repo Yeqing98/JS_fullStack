@@ -8,6 +8,20 @@ const router = require('koa-router')();
 app.use(koaStatic(
     path.join(__dirname, './public/')
 ))
+
+app.use(async (ctx, next) => {
+    if (!ctx.url.includes('/api')) {
+        const fs = require('fs');
+        const util = require('util');
+        const fsPromise = util.promisify(fs.readFile);
+        const data = await fsPromise('./static/history.html', 'utf8');
+        console.log(data);
+        ctx.body = data;
+        return false;
+    }
+    next()
+})
+
 // res.set
 app.use(async (ctx, next) => {
     // 允许哪个域名请求
