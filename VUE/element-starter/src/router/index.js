@@ -3,7 +3,8 @@ import VueRouter from 'vue-router';
 
 import {
     login,
-    index
+    index,
+    register
 } from 'pages/';
 // this.$router   this.$route
 
@@ -19,6 +20,12 @@ const routes = [
         name: 'index',
         hidden: true,
         component: index
+    },
+    {
+        path: '/register',
+        name: 'register',
+        hidden: true,
+        component: register
     }
 ]
 Vue.use(VueRouter)

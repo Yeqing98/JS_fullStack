@@ -30,15 +30,18 @@ function Person(name) {
     this.name = name
     // return 66
 }
-function Student() {
-
+function Student(name) {
+    Person.call(this, name)
+    console.log(this.name)
 }
-Student.prototype = Person.prototype
-Student.prototype.constructor = Student
+Student.prototype = new Person
+// Student.prototype.constructor = Student
 let p = new Student("wn")
 console.log(p instanceof Person)
+console.log(p instanceof Student)
+console.log(p)
 
-// for(var i = 0; i < 10; i++) {
+// for(var i = 0; i < 5; i++) {
 //     setTimeout(() => {
 //         console.log(i)
 //     }, 0)
@@ -47,17 +50,17 @@ console.log(p instanceof Person)
 
 
 // for in 迭代 和 for of 有什么区别
-Array.prototype.method = function() {
-    console.log('aaa')
-}
-var myArr = [1,2,3,4,5,6,7]
-myArr.name = '123'
-for(let index of myArr) {
-    console.log(index)
-}
-for(let index in myArr) {
-    console.log(myArr[index])
-}
+// Array.prototype.method = function() {
+//     console.log('aaa')
+// }
+// var myArr = [1,2,3,4,5,6,7]
+// myArr.name = '123'
+// for(let index of myArr) {
+//     console.log(index)
+// }
+// for(let index in myArr) {
+//     console.log(myArr[index])
+// }
 
 // for in   
 // 1、里面的index是索引为字符串的数组， 不能进行几何运算
@@ -70,28 +73,28 @@ for(let index in myArr) {
 // for of 遍历的只是数组的元素， 不包括数组的原型属性和索引
 
 
-let gArr = [1,[2,3],4,5,[6,[7,8]]]
+// let gArr = [[1],[2,3],4,5,[6,[7,8]]]
 
-function dispatch(arr) {
-    let res = [];
+// function dispatch(arr) {
+//     let res = [];
     
-    for (let i = 0; i < arr.length; i++) {
-        const arr3 = arr[i]
-        if(Array.isArray(arr3)) {
-            res = res.concat(dispatch(arr3))
-        }else{
-            res.push(arr3)
-        }
+    // for (let i = 0; i < arr.length; i++) {
+    //     const arr3 = arr[i]
+    //     if(Array.isArray(arr3)) {
+    //         res = res.concat(dispatch(arr3))
+    //     }else{
+//             res.push(arr3)
+//         }
         
-    }
-    return res;
-}
+//     }
+//     return res;
+// }
 
-function outPut(arr) {
-    return arr.reduce(function(pre, item) {
-        return pre.concat(Array.isArray(item) ? outPut(item) : item);
-    }, [])
-}
+// function outPut(arr) {
+//     return arr.reduce(function(pre, item) {
+//         return pre.concat(Array.isArray(item) ? outPut(item) : item);
+//     }, [])
+// }
 
-console.log(dispatch(gArr))
-console.log(outPut(gArr))
+// console.log(dispatch(gArr))
+// console.log(outPut(gArr))

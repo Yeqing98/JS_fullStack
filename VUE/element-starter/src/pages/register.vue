@@ -5,7 +5,7 @@
         <transition name="form-fade" mode="in-out">
             <section class="form_container" v-show="showLogin">
                 <div class="manage-tip">
-                    <span class="title">后台管理系统</span>
+                    <span class="title">注册账号</span>
                 </div>
                 <el-form :model="loginForm" ref="loginForm" class="loginForm" >
                     <el-form-item prop="username">
@@ -16,8 +16,7 @@
                         <el-input class="area" style="margin-top:20px" type="text" placeholder="请输入密码" v-model="loginForm.password"></el-input>
                     </el-form-item>
                 </el-form>
-                <el-button type="primary" @click="handleSign">登录</el-button>
-                <el-button>注册</el-button>
+                <el-button type="primary">确定</el-button>
             </section>
         </transition>
     </div>
@@ -36,7 +35,7 @@ export default {
     },
     mounted() {
         this.showLogin = true
-    },me        
+    },
 }
 </script>
 
